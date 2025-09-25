@@ -4,9 +4,16 @@
     border: 0;
     box-sizing: border-box;
 }
+@font-face {
+    font-family: bm;
+    src: url(./font/BlackMango-Black.otf);
+}
+h1{
+    font-family: bm;
+}
 body{
     background: url(./img/stars-bg.png);
-    color: #fff;
+    color: rgb(184, 182, 182);
     font-family: 'poppins' sans-serif;
 }
 .nav-bar{
@@ -20,6 +27,7 @@ body{
     align-items: center;
     font-size: 14px;
     font-weight: 600;
+    color: #fff;
 }
 .logo .star{
     width: 6px;
@@ -48,6 +56,13 @@ a:hover{
     text-decoration: underline;
     transform: scale(1.1);
 }
+section{
+    height: 100vh;
+    padding: 3rem;
+}
+.section-one{
+    height: calc(100vh - 85px);
+}
 .container{
     display: grid;
     grid-template-columns: repeat(2,1fr);
@@ -58,4 +73,48 @@ a:hover{
     width: 600px;
     height: 600px;
     object-fit: cover;
+}
+.title{
+    line-height: 1.2;
+}
+.title h1{
+    font-size: 40px;
+    text-transform: capitalize;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+.title .star {
+    width: 40px;
+}
+p{
+    font-size: 14px;
+    font-weight: 600;
+    max-width: 400px;
+}
+.p{
+    padding: 2rem 0;
+}
+button{
+    border: none;
+    outline: none;
+    background: linear-gradient(to right, #2b32b2,#1488cc
+    );
+    color: #fff;
+    padding: 1rem 2rem;
+    text-transform: lowercase;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .3s ease;
+}
+button::after{
+    font: normal normal normal 14px/1 FontAwesome;
+    content: '\e098';
+    margin-left: 1rem;
+}
+button::before{
+    background: linear-gradient(to right, #121772, #075886);
+}
+.glow{
+    filter: drop-shadow(-20px 0px 1.75rem rgb(81,147,194));
 }

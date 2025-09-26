@@ -15,6 +15,7 @@ body {
   background: url(./img/stars-bg.png);
   color: rgb(184, 182, 182);
   font-family: "poppins" sans-serif;
+  overflow-x: hidden;
 }
 .nav-bar {
   display: flex;
@@ -221,4 +222,35 @@ footer{
 }
 .center{
   justify-self: center;
+}
+.star-s2{
+  position: absolute;
+  width: 65px;
+  right: -2%;
+}
+.star-s4{
+   width: 65px;
+  position: absolute;
+  left: -2%;
+  margin-top: 2.5rem;
+}
+.star-s5{
+  position: absolute;
+  left: 40%;
+  width: 40px;
+}
+.image{
+  animation:float 4s ease-in-out infinite;
+}
+@keyframes float{
+  0%{
+    transform: translateY(0px);
+  }
+  50%{
+    transform: translatey(-15px);
+  }
+  100%{
+    transform: translatey(0px);
+  }
+
 }

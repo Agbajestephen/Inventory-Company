@@ -36,7 +36,7 @@ body {
   margin-right: 4px;
 }
 
-.menu-item {
+.menu_items {
   display: flex;
   gap: 2rem;
 }
@@ -240,7 +240,7 @@ footer{
   width: 40px;
 }
 .image{
-  animation:float 4s ease-in-out infinite;
+  /* animation:float 4s ease-in-out infinite; */
 }
 @keyframes float{
   0%{

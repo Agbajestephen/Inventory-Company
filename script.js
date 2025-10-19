@@ -123,10 +123,10 @@ gsap.utils.toArray(".line").forEach((line) => {
     },
     {
       opacity: 1,
-      width: "100%",
+      width: "100%",   
       duration: 1,
       delay: 1,
-      scrollTrigger: line,
+      scrollTrigger: line,  
     }
   );
 });

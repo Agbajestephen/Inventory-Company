@@ -17,6 +17,68 @@ gsap.from(menu_items.children, {
   },
 });
 
+// Mobile menu toggle
+const menuToggle = document.querySelector(".menu-toggle");
+if (menuToggle) {
+  menuToggle.addEventListener("click", () => {
+    const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+    menuToggle.setAttribute("aria-expanded", String(!expanded));
+    menu_items.classList.toggle("open");
+    // toggle a backdrop to catch outside clicks (created dynamically)
+    let backdrop = document.querySelector(".menu-backdrop");
+    if (!backdrop) {
+      backdrop = document.createElement("div");
+      backdrop.className = "menu-backdrop";
+      document.body.appendChild(backdrop);
+    }
+    backdrop.classList.toggle("show", menu_items.classList.contains("open"));
+  });
+}
+
+// Close menu when clicking outside or when a nav link is clicked
+document.addEventListener("click", (e) => {
+  const target = e.target;
+  const isInsideMenu =
+    menu_items.contains(target) || (menuToggle && menuToggle.contains(target));
+  const backdrop = document.querySelector(".menu-backdrop");
+  if (!isInsideMenu && menu_items.classList.contains("open")) {
+    menu_items.classList.remove("open");
+    if (menuToggle) menuToggle.setAttribute("aria-expanded", "false");
+    if (backdrop) backdrop.classList.remove("show");
+  }
+});
+
+// Close menu when any menu link is clicked (for single-page nav)
+menu_items.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", () => {
+    if (menu_items.classList.contains("open")) {
+      menu_items.classList.remove("open");
+      if (menuToggle) menuToggle.setAttribute("aria-expanded", "false");
+      const backdrop = document.querySelector(".menu-backdrop");
+      if (backdrop) backdrop.classList.remove("show");
+    }
+  });
+});
+
+// Debug toggle: add .debug-overflow to body when URL has ?debug=overflow
+(function(){
+  try{
+    const params = new URLSearchParams(window.location.search);
+    if(params.get('debug') === 'overflow'){
+      document.body.classList.add('debug-overflow');
+      console.info('debug-overflow enabled via URL param');
+    }
+  }catch(e){/* ignore in older browsers */}
+
+  // Keyboard toggle for convenience: Ctrl+Shift+D toggles debug outline
+  document.addEventListener('keydown', (e)=>{
+    if(e.ctrlKey && e.shiftKey && (e.key === 'D' || e.key === 'd')){
+      document.body.classList.toggle('debug-overflow');
+      console.info('Toggled debug-overflow:', document.body.classList.contains('debug-overflow'));
+    }
+  });
+})();
+
 gsap.utils.toArray(".star").forEach((star) => {
   gsap.fromTo(
     star,
@@ -31,7 +93,7 @@ gsap.utils.toArray(".star").forEach((star) => {
       y: 0,
       duration: 1,
       delay: 1.5,
-      scrollTigger: star,
+      scrollTrigger: star,
     }
   );
 });
@@ -63,12 +125,12 @@ gsap.utils.toArray("p").forEach((p) => {
     {
       opacity: 0,
       x: 150,
-      shewX: 30,
+      skewX: 30,
     },
     {
       opacity: 1,
       x: 0,
-      shewX: 0,
+      skewX: 0,
       duration: 1,
       delay: 0.5,
       scrollTrigger: p,
@@ -123,10 +185,10 @@ gsap.utils.toArray(".line").forEach((line) => {
     },
     {
       opacity: 1,
-      width: "100%",   
+      width: "100%",
       duration: 1,
       delay: 1,
-      scrollTrigger: line,  
+      scrollTrigger: line,
     }
   );
 });
@@ -180,4 +242,4 @@ gsap.from(menu.children, {
     trigger: menu.children,
   },
 });
-z
+// end of file
